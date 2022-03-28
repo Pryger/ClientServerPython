@@ -43,14 +43,6 @@ class Client:  # Класс с методами организующими се�
         # Когда всё отправленно, в конце отправляем нулевой байт
         self.sock.send(b'\x00')
 
-    # Отправка пакета завершающего соединение по принципу sendPackageStart
-    def sendPackageClose(self):
-        Data = dict()
-        Data['header'] = 'close'
-        package = str(json.dumps(Data)).encode('utf-8')
-        self.sock.send(package)
-
     # Отправка завершающего пакета и закрытие сокета
     def closeConnect(self):
-        self.sendPackageClose()
         self.sock.close()
